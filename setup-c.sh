@@ -38,6 +38,6 @@ echo
 echo "Configuring Upstream..."
 
 git remote add upstream "${TEAM_REPO}/c-main"
-git config branch.master.mergeOptions "--no-edit"
+git config branch.main.mergeOptions "--no-edit"
 
 echo "Done."
