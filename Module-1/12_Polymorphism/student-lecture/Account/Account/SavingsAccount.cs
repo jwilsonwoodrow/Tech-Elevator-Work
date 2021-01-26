@@ -8,7 +8,7 @@ namespace Account
     {
         public SavingsAccount(string number, decimal bal) : base(number, bal)
         {
-            Console.WriteLine("In SavingsAccount constructor");
+            //Console.WriteLine("In SavingsAccount constructor");
         }
 
         public override decimal Withdraw(decimal amtToWithdraw)
