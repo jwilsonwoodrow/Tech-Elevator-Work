@@ -18,8 +18,11 @@ namespace Shapes
     {
         #region Fields
 
-        // TODO 10 Create the private list of shapes. 
+        
         // This is our "drawing"; it is what the user is building up while running the program.
+        
+        
+        List<Shape2D> shapes = new List<Shape2D>();
 
         #endregion
 
@@ -69,8 +72,9 @@ namespace Shapes
             ConsoleColor color = GetColor();
             bool filled = GetBool("Do you want the shape filled? ", false);
 
-            // TODO 11 Add a new Circle to the collection
-
+            
+            Circle aCircle = new Circle(x, y, color, filled, radius);
+            this.shapes.Add(aCircle);
 
             Console.WriteLine("New Circle was added");
             return MenuOptionResult.WaitAfterMenuSelection;
@@ -86,7 +90,9 @@ namespace Shapes
             ConsoleColor color = GetColor();
             bool filled = GetBool("Do you want the shape filled? ", false);
 
-            // TODO 12 Add a new Rectangle to the collection
+            Rectangle rectangle = new Rectangle(x,y,color,filled,width,height);
+            this.shapes.Add(rectangle);
+
 
 
             Console.WriteLine("New Rectangle was added");
@@ -98,8 +104,11 @@ namespace Shapes
         /// </summary>
         private MenuOptionResult DrawCanvas()
         {
-            // TODO 13 Loop through the shapes and Draw each one.
-
+            
+            foreach (Shape2D shape in this.shapes) 
+            {
+                shape.Draw();
+            }
 
             // Hide the cursor while displaying the drawing
             Console.CursorVisible = false;
@@ -112,7 +121,9 @@ namespace Shapes
         {
             Console.WriteLine("Shapes:");
 
-            // TODO 14 Display the list of shapes
+            foreach (Shape2D shape in this.shapes) {
+                Console.WriteLine(shape);
+            }
 
 
             return MenuOptionResult.WaitAfterMenuSelection;
@@ -120,7 +131,7 @@ namespace Shapes
 
         private MenuOptionResult ClearCanvas()
         {
-            // TODO 15 Clear the list of shapes
+            this.shapes.Clear();
 
 
             Console.WriteLine("Canvas was cleared");

@@ -27,8 +27,8 @@ namespace Shapes
             DrawingCLI cli = new DrawingCLI();
             cli.Show();
 
-            Console.WriteLine("Thanks for drawing with us!");
-            Console.ReadKey();
+            //Console.WriteLine("Thanks for drawing with us!");
+            //Console.ReadKey();
         }
     }
 }
