@@ -12,7 +12,7 @@ namespace Shapes.Models
     /// <summary>
     /// A two-dimensional shape that can be drawn on the screen
     /// </summary>
-    public class Shape2D : IDrawable
+    public abstract class Shape2D : IDrawable
     {
         #region statics
         public static char edgeSymbol = '*';
@@ -36,12 +36,9 @@ namespace Shapes.Models
             }
         }
 
-        virtual public int Perimeter
+        abstract public int Perimeter
         {
-            get
-            {
-                return 0;
-            }
+            get;
         }
 
         #endregion
@@ -64,7 +61,7 @@ namespace Shapes.Models
         #region Public Methods
 
         // TODO 02: Draw makes no sense at the Shape2D level, so force any inheriting class to implement it.
-        virtual public void Draw() { }
+        abstract public void Draw();
 
         public override string ToString()
         {

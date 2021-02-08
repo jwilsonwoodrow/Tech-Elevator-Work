@@ -15,7 +15,7 @@ namespace Shapes.Models
     /// <summary>
     /// A two-dimensional shape that can be drawn on the screen
     /// </summary>
-    public class Shape2D
+    public class Shape2D : IDrawable
     {
         #region statics
         public static char edgeSymbol = '*';

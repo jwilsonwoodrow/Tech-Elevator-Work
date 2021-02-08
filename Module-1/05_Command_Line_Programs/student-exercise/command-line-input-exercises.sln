@@ -1,17 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2016
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Difficult", "Difficult", "{B3A54296-7DA0-4CCD-B970-464CCC3C069A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DecimalToBinary", "DecimalToBinary\DecimalToBinary.csproj", "{87DAD489-FAF4-4966-9878-3854B17B7387}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DecimalToBinary", "DecimalToBinary\DecimalToBinary.csproj", "{87DAD489-FAF4-4966-9878-3854B17B7387}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fibonacci", "Fibonacci\Fibonacci.csproj", "{010A58E9-FAC0-48ED-B6E3-7BF63907AD7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fibonacci", "Fibonacci\Fibonacci.csproj", "{010A58E9-FAC0-48ED-B6E3-7BF63907AD7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinearConvert", "LinearConvert\LinearConvert.csproj", "{B782DE23-E1F5-4785-82D7-65EE74C4D4D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinearConvert", "LinearConvert\LinearConvert.csproj", "{B782DE23-E1F5-4785-82D7-65EE74C4D4D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TempConvert", "TempConvert\TempConvert.csproj", "{CD0CAADD-8F60-4CB6-9230-BADC8C515E7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TempConvert", "TempConvert\TempConvert.csproj", "{CD0CAADD-8F60-4CB6-9230-BADC8C515E7D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -20,16 +20,37 @@ namespace Shapes.Models
 
         #region Properties
         public ConsoleColor Color { get; set; }
-
+        public int X { get; set; }
+        public int Y { get; set; }
+        public bool IsFilled{ get; set; }
+        virtual public int Area 
+        {
+            get
+            {
+                return 0;
+            }
+        }
+        
+        virtual public int Perimeter
+        { 
+            get {
+                return 0;
+            }
+        }
         #endregion
 
         #region Constructors
-
+        public Shape2D(int x, int y, ConsoleColor color, bool isFilled) {
+            this.X = x;
+            this.Y = y;
+            this.Color = color;
+            this.IsFilled = isFilled;
+        }
         #endregion
 
 
         #region Public Methods
-
+        virtual public void Draw() { }
         #endregion
 
         #region Helper Methods
