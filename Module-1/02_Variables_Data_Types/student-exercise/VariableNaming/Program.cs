@@ -26,7 +26,11 @@ namespace VariableNaming
             int numberOfNests = 3;
             int numberOfExtraBirds = numberOfBirds - numberOfNests;
 
-
+            Console.WriteLine(5/3);
+            Console.WriteLine((double)5/3);
+            Console.WriteLine((decimal)5 / 3);
+            Console.WriteLine((double)3 / 5);
+            Console.WriteLine((decimal)3 / 5);
 
             /*
             3. 3 raccoons are playing in the woods. 2 go home to eat dinner. How

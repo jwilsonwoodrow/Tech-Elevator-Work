@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Variables_And_Datatypes
 {
@@ -12,86 +13,104 @@ namespace Variables_And_Datatypes
 		    1. Create a variable to hold an int and call it numberOfExercises.
 			Then set it to 26.
 		    */
-
-            //Console.WriteLine(numberOfExercises);
-
+            int numberOfExercises;
+            numberOfExercises = 1;
+            Console.WriteLine(numberOfExercises);
+            
             /*
             2. Create a variable to hold a double and call it half.
                 Set it to 0.5.
             */
-
-            //Console.WriteLine(half);
+            double half = .5;
+            Console.WriteLine(half);
 
             /*
             3. Create a variable to hold a string and call it name.
                 Set it to "TechElevator".
             */
-
-            //Console.WriteLine(name);
+            string name = "TechElevator";
+            Console.WriteLine(name);
 
             /*
             4. Create a variable called seasonsOfFirefly and set it to 1.
             */
-
-            //Console.WriteLine(seasonsOfFirefly);
+            int seasonsOfFirefly = 1;
+            Console.WriteLine(seasonsOfFirefly);
 
             /*
             5. Create a variable called myFavoriteLanguage and set it to "C#".
             */
-
-            //Console.WriteLine(myFavoriteLanguage);
+            string myFavoriteLanguage = "C#";
+            Console.WriteLine(myFavoriteLanguage);
 
             /*
             6. Create a variable called pi and set it to 3.1416.
             */
-
-            //Console.WriteLine(pi);
+            double pi = 3.1416;
+            Console.WriteLine(pi);
 
             /*
             7. Create and set a variable that holds your name.
             */
+            string myName = "Ben";
 
             /*
             8. Create and set a variable that holds the number of buttons on your mouse.
             */
+            int numberOfMouseButtons = 3;
 
             /*
             9. Create and set a variable that holds the percentage of battery left on
             your phone.
             */
+            int batteryLife = 3;
+
 
             /* EXPRESSIONS */
 
             /*
             10. Create an int variable that holds the difference between 121 and 27.
             */
+            int diff10 = 121 - 27;
+            Console.WriteLine(diff10);
 
             /*
             11. Create a double that holds the addition of 12.3 and 32.1.
             */
+            double addition11 = 12.3 + 32.1;
+            Console.WriteLine(addition11);
+            
 
             /*
             12. Create a string that holds your full name.
             */
-
+            string myFullName = "Ben Kennedy";
+            Console.WriteLine(myFullName);
             /*
             13. Create a string that holds the word "Hello, " concatenated onto your
             name from above.
             */
+            string greeting = "Hello, " + myName;
+            Console.WriteLine(greeting);
 
             /*
             14. Add a " Esquire" onto the end of your full name and save it back to
             the same variable.
             */
+            greeting = greeting + " Esquire";
+            Console.WriteLine(greeting);
+
 
             /*
             15. Now do the same as exercise 14, but use the += operator.
             */
+            greeting += " Esquire";
 
             /*
             16. Create a variable to hold "Saw" and add a 2 onto the end of it.
             */
-
+            string movie = "Saw" + 2;
+            Console.WriteLine(movie);
             /*
             17. Add a 0 onto the end of the variable from exercise 16.
             */
