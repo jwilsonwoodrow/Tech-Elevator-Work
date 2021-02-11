@@ -1,12 +1,38 @@
 -- INSERT
 -- 1. Add a city to the City table, district 'Ohio'
--- 1a. What is the @@Identity?
+
+insert into City(Name, CountryCode, District, Population)
+	values('Richfield', 'USA', 'Ohio', 12000)
+
+-- 1a. What is the @@Identity? (4081)
+
+select @@IDENTITY
+
 -- 2. Add 2 more cities to Ohio using one insert statement
--- 2a. What is the @@Identity?
+
+insert into City(Name, CountryCode, District, Population)
+	values
+	('Cleveland Heights', 'USA', 'Ohio', 43000),
+	('Lakewood', 'USA', 'Ohio', 50000)
+
+-- 2a. What is the @@Identity? (4083)
+
+select @@IDENTITY
 
 -- 0. Add Klingon to the Language table
--- 0a. What is the @@Identity?
+
+insert Language (LanguageName)
+values ('Klingon')
+
+-- 0a. What is the @@Identity? (458)
+
+select @@IDENTITY
+
+
 -- 1. Add Klingon as a spoken language in the USA
+insert CountryLanguage(CountryCode, LanguageId, IsOfficial, Percentage)
+values('USA', 458, 0, 2.00) 
+
 -- 2. Add Klingon as a spoken language in Great Britain
 
 

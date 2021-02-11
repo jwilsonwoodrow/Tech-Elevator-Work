@@ -35,13 +35,13 @@ where Continent = 'africa'
 select Name, GNP * 1000000 / Population as PerCapitaGNP
 from Country
 where Population != 0
-order by PerCapitaGNP asc
+order by PerCapitaGNP desc
 
 
 -- 4. The average life expectancy of countries in South America.
 -- (average life expectancy in South America: 70.9461)
 
-select avg(LifeExpectancy) 
+select avg(LifeExpectancy) as AvgLifeExpectancy_SA
 from Country
 where Continent = 'south america'
 
@@ -129,7 +129,7 @@ order by LifeExpectancy desc
 select Name, Population / SurfaceArea as PopDensity, LifeExpectancy
 from Country
 where Code in ('and', 'mac', 'smr', 'jpn', 'sgp', 'aus', 'che', 'swe', 'hkg', 'can')
-
+order by LifeExpectancy desc
 
 -- 16. The difference between the previous and current GNP of all the countries in 
 -- the world ordered by the absolute value of the difference. Display both 
