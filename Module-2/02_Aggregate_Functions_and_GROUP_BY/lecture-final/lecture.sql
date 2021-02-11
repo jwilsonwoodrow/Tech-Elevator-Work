@@ -175,7 +175,7 @@ Order by CountryCode, District
 -- 'George W. Bush'
 
 -- First find the countries under this leader
-Select Code
+Select *
 	from Country 
 	where HeadOfState = 'George W. Bush'
 
@@ -189,6 +189,29 @@ Select *
 Select *
 	From City
 	Where CountryCode in (Select Code from Country where HeadOfState = 'George W. Bush')
+
+Select Concat(name, ' ', district) [City-State] from City
+
+-- Examples of Count
+
+-- How many countries are there?
+Select count(*) from Country
+
+-- How many countries in Asia?
+Select Count(*) from Country Where Continent = 'Asia'
+
+-- How many countries are on each continent?
+Select Continent, Count(*) from Country Group By Continent
+
+-- How many countries are independent?
+Select Count(*) from Country where IndepYear is not null
+
+-- How many countries are independent? (Another way)
+Select Count(IndepYear) from Country
+
+-- How many countries in Africa are independent? (Another way)
+Select Count(IndepYear) from Country Where continent = 'Africa'
+
 
 
 
