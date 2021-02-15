@@ -33,21 +33,55 @@ select @@IDENTITY
 insert CountryLanguage(CountryCode, LanguageId, IsOfficial, Percentage)
 values('USA', 458, 0, 2.00) 
 
+select * 
+from CountryLanguage cl
+join Language l on cl.LanguageId = l.LanguageId
+where cl.CountryCode = 'usa'
+
 -- 2. Add Klingon as a spoken language in Great Britain
 
+insert into CountryLanguage(CountryCode, LanguageId, IsOfficial, Percentage)
+values('gbr', 456, 0, 4.23)
 
 -- UPDATE
 
 -- 0. Update the population of Cleveland to 2020 values (379,233)
+
+update City
+set Population = 379233 where City.Name = 'cleveland'
+
 -- 1. Update the capital of the USA to Houston
+
+select * from City where Name = 'houston' --houston id = 3796
+
+update Country
+--set Capital = 3796    ... or use subquery
+set Capital = (Select CityId from city where Name = 'houston')
+where code = 'usa'
+
 -- 2. Update the capital of the USA to Washington DC and the head of state
 
+update Country
+set Capital = (select CityId from city where name = 'washington'),
+	HeadOfState = 'Joe Biden'
+where country.Code = 'usa'
+
+select * from Country where country.Code = 'usa'
 
 -- DELETE
 
 -- 0. Delete the newly added Ohio cities
+
+--delete from City where name = 'richfield' and District = 'ohio'
+delete from City where Name in ('richfield', 'cleveland heights', 'lakewood') and District = 'ohio'
+
 -- 1. Delete English as a spoken language in the USA
+
+delete from CountryLanguage where LanguageId = (select LanguageId from Language where LanguageName = 'english') and CountryCode = 'usa'
+
 -- 2. Delete all occurrences of the Klingon language 
+
+delete from CountryLanguage where LanguageId = (select LanguageId from Language where LanguageName = 'klingon')
 
 
 -- REFERENTIAL INTEGRITY
