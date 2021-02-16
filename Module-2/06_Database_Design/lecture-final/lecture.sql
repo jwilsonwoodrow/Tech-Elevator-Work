@@ -1,4 +1,4 @@
--- Use master so that we are not "sitting" in the Art datbaaee
+---- Use master so that we are not "sitting" in the Art datbaaee
 Use master
 GO
 
