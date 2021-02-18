@@ -14,18 +14,19 @@ namespace WorldDB.Views
     {
         // TODO 05c: Store the Interfaces to our data objects
         private ICountryDAO countryDAO;
-
+        private ICityDAO cityDAO;
 
         /// <summary>
         /// Constructor adds items to the top-level menu
         /// </summary>
-        public WorldDBMenu(ICountryDAO countryDAO)
+        public WorldDBMenu(ICountryDAO countryDAO, ICityDAO cityDAO)
         {
             // TODO 05a: Change this constructor to require country dao
             // TODO 15a: Change this constructor to require country-language dao
 
             // TODO 05d: Assign the Interfaces to protected variables so we can use them later
             this.countryDAO = countryDAO;
+            this.cityDAO = cityDAO;
 
 
             // Add options to this menu

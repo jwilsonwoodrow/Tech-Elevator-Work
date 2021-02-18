@@ -10,6 +10,7 @@ namespace Assessment
         public int NumberOfNights { get; set; }
         public decimal EstimatedTotal { set; get; }
 
+        public List<HotelReservation> reservations = new List<HotelReservation>();
 
         public HotelReservation(string name, int numberOfNights)
         {
@@ -17,6 +18,7 @@ namespace Assessment
             NumberOfNights = numberOfNights;
             EstimatedTotal = numberOfNights * 59.99M;
         }
+
         public decimal AddFees(bool usedMinibar, bool requiresCleaning)
         {
             

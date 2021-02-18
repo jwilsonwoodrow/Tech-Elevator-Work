@@ -16,6 +16,7 @@ namespace WorldDB.Views
 
         // TODO 09a: Store the Interfaces to our data objects
 
+        private ICityDAO cityDAO;
 
         /// <summary>
         /// Constructor adds items to the top-level menu
@@ -23,7 +24,7 @@ namespace WorldDB.Views
         public CountryMenu(Country country)
         {
             // TODO 09b: Update this constructor to accept appropriate daos, and save them in local variables.
-
+            this.cityDAO = cityDAO;
             // Save the country (which will be used for all country queries
             this.country = country;
 

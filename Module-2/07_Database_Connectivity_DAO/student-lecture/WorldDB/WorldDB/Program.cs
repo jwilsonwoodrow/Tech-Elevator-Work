@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
+using System.Data.SqlClient;
 using System.IO;
 using System.Threading;
 using WorldDB.DAL;
@@ -51,8 +52,20 @@ namespace WorldDB
             // TODO 01: Read cities from the database and list the results on the screen.
 
             // TODO 02: Add a parameter to the query to get the cities for a given country code.
+            string connectionString = "Server=.\\SqlExpress;Database=World;Trusted_Connection=True;";
 
-            Console.ReadLine();
+            Console.Write("Country Code: ");
+            string countryCode = Console.ReadLine();
+            try
+            {
+                //create a connection
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    SqlCommand
+                }
+
+            catch { }
+            }
         }
     }
 }

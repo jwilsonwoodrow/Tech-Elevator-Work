@@ -18,19 +18,14 @@ namespace Assessment
             Console.WriteLine(res1String);
             Console.WriteLine(res2String);
 
-
-            //public List<HotelReservation> reservations = new List<HotelReservation>();    //This line breaks everything, why?
-            using (StreamReader reader = new StreamReader("..\\..\\..\\Data\\HotelInput.csv"))  
+            //Read Info
+            ReaderInput input = new ReaderInput();
+            Dictionary<string, int> newReservations = input.ReadData();
+            foreach(KeyValuePair kvp in newReservations)
             {
-                while (!reader.EndOfStream)
-                {
-                    string line = reader.ReadLine();
-                    string[] lineArray = line.Split(",");
-                    //reservations.Add(lineArray[0], Int32.Parse(lineArray[1]));
-                }
 
+                Console.WriteLine(kvp.ToString);
             }
-
 
         }
     }
