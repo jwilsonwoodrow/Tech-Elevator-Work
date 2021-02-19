@@ -68,7 +68,7 @@ namespace ProjectOrganizer.DAL
                 command.Parameters.AddWithValue("@last", last);
 
                 SqlDataReader reader = command.ExecuteReader();
-                if (reader.Read())
+                while (reader.Read())
                 {
                     Employee employee = RowToObject(reader);
                     Employees.Add(employee);

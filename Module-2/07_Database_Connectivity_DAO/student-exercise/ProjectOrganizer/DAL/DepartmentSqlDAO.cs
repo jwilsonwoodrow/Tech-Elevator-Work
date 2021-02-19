@@ -85,7 +85,6 @@ namespace ProjectOrganizer.DAL
                     SqlCommand cmd = new SqlCommand("UPDATE Department SET Name = @Name WHERE department_id = @ID", conn);
                     cmd.Parameters.AddWithValue("@Name", updatedDepartment.DepartmentName);
                     cmd.Parameters.AddWithValue("@ID", updatedDepartment.DepartmentID);
-
                     int rowsAffected = cmd.ExecuteNonQuery();
                     conn.Close();
                     if (rowsAffected > 0)
@@ -98,7 +97,7 @@ namespace ProjectOrganizer.DAL
             catch (SqlException ex)
             {
                 Console.WriteLine("eroor");
-                throw;
+                throw; //?
             }
         }
 

@@ -74,7 +74,6 @@ namespace ProjectOrganizer.DAL
             }
         }
 
-
         /// <summary>
         /// Removes an employee from a project.
         /// </summary>
@@ -98,7 +97,6 @@ namespace ProjectOrganizer.DAL
                 else return false;
             }
         }
-
 
         /// <summary>
         /// Creates a new project.

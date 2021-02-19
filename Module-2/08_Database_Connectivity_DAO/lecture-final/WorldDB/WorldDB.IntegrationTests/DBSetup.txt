@@ -1,0 +1,49 @@
+﻿use World_Test
+
+--this script will be run before every test to establish the database in a known state
+--first, remove data starting with reference tables
+update Country set Capital = null --we also have to null the capitals, so that there City and Country are not connected by dual references 
+delete from CountryLanguage
+delete from City
+delete from Country
+delete from Language
+
+--add data starting with most independent tables
+insert into Language(LanguageName) Values
+	('English'),
+	('Javascript'),
+	('Thalassian')
+
+INSERT INTO Country ([Code] ,[Name],[Continent]
+           ,[Region]
+           ,[SurfaceArea]
+           ,[IndepYear]
+           ,[Population]
+           ,[LifeExpectancy]
+           ,[GNP]
+           ,[GNPOld]
+           ,[LocalName]
+           ,[GovernmentForm]
+           ,[HeadOfState]
+           ,[Capital]
+           ,[Code2])
+     VALUES ('USA', 'United States', 'North America', '', 100000, 1776, 1000000, 80, null, null, 'America', 'Representative Democracy', 'Joe Bider', null, 'US'),
+			('CAN', 'Canada', 'North America', '', 100001, 1800, 1000000, 90, null, null, 'Canada', 'Representative Democracy', 'Guy LaFleur', null, 'CA'),
+			('GBR', 'United Kingdom', 'Europe', '', 100002, 1400, 1000000, 40, null, null, 'England', 'Representative Democracy', 'Margaret Thatcher', null, 'UK')
+
+insert into CountryLanguage (CountryCode, LanguageID, IsOfficial, Percentage) Values
+	('USA', (select languageID from language where languageName = 'English'), 0, 90),
+	('USA', (select languageID from language where languageName = 'Javascript'), 0, 40),
+	('CAN',(select languageID from language where languageName = 'Thalassian'), 1, 100),
+	('GBR',(select languageID from language where languageName = 'English'), 0, 75),
+	('GBR',(select languageID from language where languageName = 'Javascript'), 1, 90)
+	
+insert into City (Name, CountryCode, District, Population) Values
+	('Cleveland', 'USA', 'Ohio', 10000),
+	('Mayberry', 'USA', 'North Carolina', 10000),
+	('Toronto', 'CAN', 'Ontario', 10000),
+	('London', 'GBR', '?', 10000)
+
+update Country set Capital = (select CityId from City where Name = 'Cleveland') where Code = 'USA'
+update Country set Capital = (select CityId from City where Name = 'Toronto') where Code = 'CAN'
+update Country set Capital = (select CityId from City where Name = 'London') where Code = 'GBR'
