@@ -5,7 +5,7 @@ namespace WorldDB.DAL
 {
     public interface ICountryDAO
     {
-        IList<Country> GetCountries();
+        List<Country> GetCountries();
         List<Country> GetCountries(string continent);
         Country GetCountry(string code);
     }

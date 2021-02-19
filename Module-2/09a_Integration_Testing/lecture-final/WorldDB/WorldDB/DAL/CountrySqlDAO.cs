@@ -22,9 +22,9 @@ namespace WorldDB.DAL
         /// Gets all countries in the World DB
         /// </summary>
         /// <returns></returns>
-        public IList<Country> GetCountries()
+        public List<Country> GetCountries()
         {
-            IList<Country> countries = new List<Country>();
+            List<Country> countries = new List<Country>();
 
             try
             {
