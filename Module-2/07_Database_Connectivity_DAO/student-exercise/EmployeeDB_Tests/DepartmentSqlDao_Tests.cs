@@ -39,6 +39,7 @@ namespace EmployeeDB_Tests
             department.DepartmentName = "Department 5";
             int newID = dao.CreateDepartment(department);
             Assert.IsNotNull(newID);
+            Assert.AreNotEqual(0, newID);
         }
 
         [TestMethod]

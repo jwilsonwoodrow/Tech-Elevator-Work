@@ -13,7 +13,7 @@ namespace WorldDB.IntegrationTests
         const string connectionString = "Server=.\\SQLExpress;Database=World_Test;Trusted_Connection=True;";
         private CountrySqlDAO dao;
 
-        [TestInitialize]
+        [TestInitialize] //called before every test
         public void Arrange()
         {
             SetupDB();

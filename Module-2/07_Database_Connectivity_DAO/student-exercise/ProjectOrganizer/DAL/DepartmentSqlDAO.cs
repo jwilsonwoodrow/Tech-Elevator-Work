@@ -50,8 +50,8 @@ namespace ProjectOrganizer.DAL
         /// <returns>The id of the new department (if successful).</returns>
         public int CreateDepartment(Department newDepartment) 
         {
-            //try
-            //{
+            try
+            {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
@@ -60,12 +60,12 @@ namespace ProjectOrganizer.DAL
                     int newID = Convert.ToInt32(cmd.ExecuteScalar()); //get new id 
                     return newID;
                 }
-            //}
-            //catch (SqlException ex)
-            //{
-            //    Console.WriteLine(ex);
-            //    return 0;
-            //}
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex);
+                return 0;
+            }
         }
         
         /// <summary>
@@ -96,8 +96,8 @@ namespace ProjectOrganizer.DAL
             }
             catch (SqlException ex)
             {
-                Console.WriteLine("eroor");
-                throw; //?
+                Console.WriteLine(ex);
+                return false;
             }
         }
 
