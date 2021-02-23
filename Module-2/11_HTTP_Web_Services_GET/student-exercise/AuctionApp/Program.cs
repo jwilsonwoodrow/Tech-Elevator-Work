@@ -91,7 +91,7 @@ namespace AuctionApp
             }
         }
 
-        private static void PrintAuctions(List<Auction> auctions)
+        public static void PrintAuctions(List<Auction> auctions)
         {
             Console.WriteLine("");
             Console.WriteLine("--------------------------------------------");
@@ -104,7 +104,7 @@ namespace AuctionApp
             Console.WriteLine("");
         }
 
-        private static void PrintAuction(Auction auction)
+        public static void PrintAuction(Auction auction)
         {
             Console.WriteLine("");
             Console.WriteLine("--------------------------------------------");

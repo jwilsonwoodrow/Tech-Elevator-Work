@@ -7,8 +7,8 @@ namespace API_Get
     {
         static void Main(string[] args)
         {
-            new ExchangeUI().Run();
-            //new WeatherUI().Run();
+            //new ExchangeUI().Run();
+            new WeatherUI().Run();
         }
 
     }

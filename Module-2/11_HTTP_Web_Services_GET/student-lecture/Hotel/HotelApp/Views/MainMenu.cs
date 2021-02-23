@@ -13,6 +13,8 @@ namespace HTTP_Web_Services_GET_lecture.Views
         public MainMenu(string apiUrl)
         {
             // TODO 01: Create the RestClient here...
+            const string API_URL = "http://localhost:3000/auctions";
+            IRestClient client = new RestClient();
 
             AddOption("List Hotels", ListHotels)
                 .AddOption("List Reviews", ListReviews)
@@ -30,8 +32,10 @@ namespace HTTP_Web_Services_GET_lecture.Views
         private MenuOptionResult ListHotels()
         {
             // Call the api to get hotels (/hotels)
-            Console.WriteLine("Not Implemented");
+            RestRequest request = new RestRequest("hotels");
 
+            IRestResponse<List<Hotel>> response = this.client.Get<List<Hotel>>(request);
+            PrintHotels(response.Data);
             return MenuOptionResult.WaitAfterMenuSelection;
         }
 
