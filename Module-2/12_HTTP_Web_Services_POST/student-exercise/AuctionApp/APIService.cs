@@ -61,6 +61,7 @@ namespace AuctionApp
             RestRequest request = new RestRequest(API_URL + "?title_like=" + searchTitle);
             IRestResponse<List<Auction>> response = client.Get<List<Auction>>(request);
 
+
             if (response.ResponseStatus != ResponseStatus.Completed)
             {
                 throw new Exception("Error occurred - unable to reach server.", response.ErrorException);
@@ -97,19 +98,47 @@ namespace AuctionApp
         public Auction AddAuction(Auction newAuction)
         {
             // place code here
-            throw new NotImplementedException();
+            RestRequest request = new RestRequest(API_URL);
+            request.AddJsonBody(newAuction);
+            IRestResponse<Auction> response = client.Post<Auction>(request);
+            CheckResponse(response);
+            return response.Data;
         }
 
         public Auction UpdateAuction(Auction auctionToUpdate)
         {
-            // place code here
-            throw new NotImplementedException();
+            RestRequest request = new RestRequest($"{API_URL}/{auctionToUpdate.Id}");
+            request.AddJsonBody(auctionToUpdate);
+
+            IRestResponse<Auction> response = client.Put<Auction>(request);
+
+            CheckResponse(response);
+
+            return response.Data;
         }
 
         public bool DeleteAuction(int auctionId)
         {
             // place code here
-            throw new NotImplementedException();
+            RestRequest request = new RestRequest($"{API_URL}/{auctionId}");
+
+            IRestResponse response = client.Delete(request);
+
+            CheckResponse(response);
+
+            return true;
+        }
+
+        private void CheckResponse(IRestResponse response)
+        {
+            if (response.ResponseStatus != ResponseStatus.Completed)
+            {
+                throw new Exception("Error occurred - unable to reach server.");
+            }
+            else if (!response.IsSuccessful)
+            {
+                throw new Exception("Error occurred - received non-success response: " + (int)response.StatusCode);
+            }
         }
     }
 }

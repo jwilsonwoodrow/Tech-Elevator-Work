@@ -41,13 +41,24 @@ namespace HTTP_Web_Services_POST_PUT_DELETE_lecture.DAL
         public Reservation AddReservation(Reservation newReservation)
         {
             // TODO 04: Implement the API call to Post a new Reservation
-            throw new NotImplementedException();
+            RestRequest request = new RestRequest("reservations");
+            request.AddJsonBody(newReservation);
+            IRestResponse<Reservation> response = client.Post<Reservation>(request);
+            CheckResponse(response);
+            return response.Data;
         }
 
         public Reservation UpdateReservation(Reservation reservationToUpdate)
         {
             // TODO 05: Implement the API call to Put an existing Reservation
-            throw new NotImplementedException();
+
+            RestRequest request = new RestRequest($"reservation/{reservationToUpdate}");
+            request.AddJsonBody(reservationToUpdate);
+
+            IRestResponse<Reservation> response = client.Post<Reservation>(request);
+
+            return response.Data;
+
         }
 
         public bool DeleteReservation(int reservationId)

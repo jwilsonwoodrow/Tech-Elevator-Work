@@ -20,7 +20,14 @@ namespace HTTP_Web_Services_POST_PUT_DELETE_lecture.DAL
             IRestResponse<List<Hotel>> response = client.Get<List<Hotel>>(request);
 
             // TODO 02: Handle errors in the Hotel API client. Check statuses and throw an exception if there are errors.
-
+            if (response.ResponseStatus != ResponseStatus.Completed)
+            {
+                throw new Exception("Error: unable to reach server");
+            }
+            if (!response.IsSuccessful)
+            {
+                throw new Exception($"Error: ");
+            }
             return response.Data;
         }
         public List<Hotel> GetHotel(int hotelId)

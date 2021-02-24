@@ -8,7 +8,6 @@ namespace HTTP_Web_Services_POST_PUT_DELETE_lecture
     class Program
     {
         private static readonly string apiUrl = "http://localhost:3000/";
-
         static void Main(string[] args)
         {
             // TODO 01: Note the new architecture: using DAOs for API access also.
