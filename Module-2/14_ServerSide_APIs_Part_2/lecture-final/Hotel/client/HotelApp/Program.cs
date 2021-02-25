@@ -5,8 +5,7 @@ namespace HTTP_Web_Services_POST_PUT_DELETE_lecture
 {
     class Program
     {
-        //private static readonly string apiUrl = "https://localhost:44322";
-        private static readonly string apiUrl = "https://tehotelreservations.azurewebsites.net";
+        private static readonly string apiUrl = "https://localhost:44322"; 
         static void Main(string[] args)
         {
             IHotelDao hotelDao = new HotelApiDao(apiUrl);
