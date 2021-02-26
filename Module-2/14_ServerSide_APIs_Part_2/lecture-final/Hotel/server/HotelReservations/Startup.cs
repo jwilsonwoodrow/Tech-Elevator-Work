@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using HotelReservations.Dao;
 using Microsoft.AspNetCore.Builder;
@@ -57,10 +58,15 @@ namespace HotelReservations
 
             // TODO 05: Configure Dependency injection so the controller doesn't have to 
             //          create the DAOs inside the controller.
-
+            int x = 10;
+            Debug.WriteLine($"1. x = {x}");
             services.AddTransient<IHotelDao, HotelFakeDao>( (sp) => {
+                Debug.WriteLine($"2. x = {x}");
+                x *= 2;
+                Debug.WriteLine($"3. x = {x}");
                 return new HotelFakeDao();
             });
+            Debug.WriteLine($"4. x = {x}");
 
             services.AddTransient<IReservationDao, ReservationFakeDao>( sp => {
                 return new ReservationFakeDao();
