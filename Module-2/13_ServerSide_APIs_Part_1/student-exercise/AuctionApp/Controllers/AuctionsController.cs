@@ -22,14 +22,6 @@ namespace AuctionApp.Controllers
                 dao = auctionDao;
             }
         }
-        //[HttpGet]                                        ... functionality moved to GetAuctionsByTitle()
-        //public List<Auction> GetAllAuctions()
-        //{
-
-        //    List<Auction> auctions = this.dao.List();
-        //    return auctions;
-
-        //}
 
         [HttpGet("{id}")]
         public Auction GetAuctionByID(int id)

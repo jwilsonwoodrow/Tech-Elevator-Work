@@ -61,8 +61,11 @@ namespace HotelReservations.Controllers
         }
 
         // TODO 02: New Feature - Find all reservations by name
-        // /reservations/name=mik
-
+        [HttpGet("reservations")]
+        public List<Reservation> GetReservations(string name)
+        {
+            return reservationDao.FindByName(name);
+        }
 
         /// <summary>
         /// Get all reservations for all hotels in the system.
