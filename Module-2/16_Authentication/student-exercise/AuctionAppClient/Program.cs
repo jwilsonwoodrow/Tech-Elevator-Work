@@ -44,6 +44,7 @@ namespace AuctionApp
                 {
                     Console.WriteLine("Invalid input. Please enter only a number.");
                 }
+
                 else if (menuSelection == 1)
                 {
                     try

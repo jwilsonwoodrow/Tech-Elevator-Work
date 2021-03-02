@@ -3,6 +3,7 @@ using RestSharp;
 using RestSharp.Authenticators;
 using System;
 using System.Collections.Generic;
+using System.Net;
 
 namespace AuctionApp
 {
@@ -146,15 +147,24 @@ namespace AuctionApp
             }
             else if (!response.IsSuccessful)
             {
-
+                if (response.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    throw new Exceptions.UnauthorizedException();
+                }
+                else if (response.StatusCode == HttpStatusCode.Forbidden)
+                {
+                    throw new ForbiddenException();
+                }
+                else throw new NonSuccessException();
             }
         }
 
         public API_User Login(string submittedName, string submittedPass)
         {
-
-
-            IRestResponse<API_User> response = null;
+            var credentials = new { username = submittedName, password = submittedPass };
+            RestRequest request = new RestRequest("Login");
+            request.AddJsonBody(credentials);
+            IRestResponse<API_User> response = client.Post<API_User>(request);
 
             if (response.ResponseStatus != ResponseStatus.Completed)
             {
