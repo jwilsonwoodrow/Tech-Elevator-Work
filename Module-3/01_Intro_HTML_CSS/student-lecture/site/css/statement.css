@@ -1,0 +1,32 @@
+h1{
+    border: 3px solid black;
+    border-radius: 10px 10px 5px 5px;
+    text-align: center;
+    padding: 5px;
+    margin: 10px 20px 10px 20px;
+    background-color: royalblue;
+    color: white;
+}
+
+body{
+    text-align: center;
+}
+
+table{
+    text-align: center;
+    margin: auto;
+    border:solid black;    
+}
+th{
+    background-color:royalblue;
+    color:white
+}
+td{
+    border: 1px solid black;
+}
+span{
+    font-weight: bold;
+}
+tfoot{
+    background-color:silver;
+}

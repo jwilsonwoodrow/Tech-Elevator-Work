@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info Form</title>
+    <link href="/CSS/fanpage.css" rel="stylesheet">
+</head>
+
+<body>
+    <h3>Enter information to subscribe to the Valheim newsletter</h3>
+    <main>
+        <form method="POST" action="/fan-page/subscribe">
+            <div>
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" required>
+            </div>
+            <div>
+                <label for="dateOfBirth">Date of Birth:</label>
+                <input type="date" id="dateOfBirth" name="dateOfBirth">
+            </div>
+            <div>
+                <label for="favoriteColor">Favorite Color:</label>
+                <input type="color" id="favoriteColor" name="favoriteColor">
+            </div>
+            <div>
+                <label for="favoriteNumber">Favorite Number:</label>
+                <input type="number" id="favoriteNumber" name="favoriteNumber">
+            </div>
+            <div>
+                <label for="Confirmation">Confirm Data is Correct</label>
+                <input type="checkbox" id="Confirmation" name="Confirmation" required>
+            </div>
+            <div>
+                <input type="submit" name="submit" id="submit">
+            </div>
+        </form>
+    </main>
+</body>
+
+</html>
