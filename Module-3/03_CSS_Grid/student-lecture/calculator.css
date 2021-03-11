@@ -18,10 +18,28 @@
 #five {grid-area:five;}
 #six {grid-area:six;}
 #seven {grid-area:seven;}
-
 /*set grid-area for 8, 9, 0*/
+#eight {grid-area:eight;}
+#nine {grid-area:nine;}
+#zero {grid-area:zero;}
+#plus {grid-area:plus;}
+#minus {grid-area:minus;}
+#multiply {grid-area:multiply;}
+#divide {grid-area:divide;}
+
+
 
 
 #container {
     /*make the container a grid*/
+    display: grid;
+    grid-template-areas:
+        "seven eight nine plus"
+        "four five six minus"
+        "one two three multiply"
+        " . . zero divide"
+    ;
+    grid-template-columns: 125px 125px 125px 125px;
+    grid-template-rows: 125px 125px 125px 125px;
+    gap: 1px;
 }

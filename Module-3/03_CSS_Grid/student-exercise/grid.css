@@ -1,0 +1,90 @@
+#headline{grid-area:studentName}
+#student-picture{
+    grid-area:studentPic;
+    text-align: center;}
+#student-quote{grid-area:studentQuote}
+#student-profile{grid-area:studentProfile}
+#student-contact{
+    grid-area:studentContact;
+    text-align: center;}
+#experience-grid{grid-area:XpGrid}
+#experience-code{grid-area:codeXp}
+#experience-database{grid-area:databaseXp}
+#experience-web{grid-area:webXp}
+#experience-design{grid-area:designXp}
+
+#main-grid{
+    display:grid;
+    grid-template-columns: 33% 33% 33%;
+    gap: 20px 50px;
+    grid-template-areas: 
+    "studentName studentName studentPic"
+    "studentQuote studentQuote studentPic"
+    "studentProfile studentProfile studentContact"
+    "XpGrid XpGrid XpGrid";
+    align-items: center;
+}
+
+#experience-grid{
+    display:grid;
+    grid-template-columns: 50% 50%;
+    gap: 20px 50px;
+    grid-template-areas:
+    "codeXp codeXp"
+    "databaseXp databaseXp"
+    "webXp designXp"
+    ;
+}
+
+@media (max-width: 1024px){
+    #main-grid{
+        grid-template-columns: 50% 50%;
+        grid-template-areas: 
+        "studentName studentName"
+        "studentQuote studentPic"
+        "studentQuote studentContact"
+        "studentProfile studentProfile"
+        "XpGrid XpGrid"
+        ;
+    }
+}
+@media (max-width: 1024px){
+    #experience-grid{
+        grid-template-columns: 50% 50%;
+        grid-template-areas: 
+        "codeXp webXp"
+        "databaseXp designXp"
+        ;
+
+    }
+}
+
+@media (max-width: 450px){
+    #main-grid{
+        grid-template-columns: 100%;
+        grid-template-areas: 
+        "studentName"
+        "studentPic"
+        "studentContact"
+        "studentQuote"
+        "studentProfile"
+        "XpGrid"
+        ;
+    }
+}
+
+@media (max-width: 450px){
+    #experience-grid{
+        grid-template-columns: 100%;
+        grid-template-areas: 
+        "codeXp"
+        "webXp"
+        "databaseXp"
+        "designXp"
+        ;
+    }
+}
+
+
+
+        
