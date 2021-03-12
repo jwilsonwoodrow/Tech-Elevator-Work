@@ -41,5 +41,37 @@ h2 {
 
 
 /*FLEX settings*/
+#container1{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: end;
+    justify-content: space-between;
+}
+
+#container2{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#container2 :nth-child(6){
+    color:red;
+    order: 1;
+    /*make the 6th item take up 50% of the horizontal space*/
+    flex-basis: 50%;
+}
+
+#container2 :nth-child(3){
+    align-self: flex-end;
+}
 
 
+#container2 :nth-child(4){
+    flex-grow: 1;
+}
+
+
+#container2 :nth-child(5){
+    flex-grow: 2;
+}
