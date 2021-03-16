@@ -195,7 +195,9 @@ let myArray = [1,2,3,4,5];
  */
 function allDivisibleByThree(numbersToFilter) {}
 
-
+/***************************************************************** */
+/********************* Array Functions  ************************** */
+/***************************************************************** */
 /**
  * Takes an array and, using the power of anonymous functions, generates
  * their sum.
