@@ -74,4 +74,5 @@ h2 {
 
 #container2 :nth-child(5){
     flex-grow: 2;
+    order: -1;
 }

@@ -14,15 +14,26 @@ function variables() {
   const daysInWeek = 7;
   printValueAndType("daysInWeek", daysInWeek);
 
-  // Can I change it?
+  // Can I change it? ... NO
 
   console.log(`There are ${daysInWeek} days in the week`)
 
   // Declares a variable those value can be changed
 
-  // Can I change it?
+  let n;
+  printValueAndType("n", n) 
+  n = "Tech Elevator";
+  printValueAndType("n", n) 
+  n = "21";
+  printValueAndType("n", n) 
+
+  // Can I change it? ... YES
+
+  
 
   // Declares a variable that will always be an array (prime numbers)
+  const prime = [1, 3, 5, 7, 11]
+  console.table(prime);
 
   // Can I change the values in the array?
 
