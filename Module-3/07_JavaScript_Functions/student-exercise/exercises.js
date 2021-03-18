@@ -22,7 +22,7 @@
 
 function isAdmitted(gpa, satScore, recommendation) {
     if (gpa > 4.0 || satScore > 1300 || gpa > 3.0 && recommendation === true || satScore > 1200 && recommendation === true) {
-    return true;
+        return true;
     }
     else return false;
 }
@@ -34,10 +34,14 @@ function isAdmitted(gpa, satScore, recommendation) {
  * @param {function} filterFunction the function to filter with
  * @returns {number[]} the filtered array
  */
+
 let unfilteredArray = [1, 2, 3, 4, 5, 6];
 
-function useParameterToFilterArray(filterFunction){
-    return unfilteredArray.filterFunction;
+function useParameterToFilterArray(filterFunction) {
+    let filteredNumbers = unfilteredArray.filter((numbers) => {
+        return filterFunction(numbers);
+    })
+    return filteredNumbers;
 }
 
 /**
@@ -53,6 +57,10 @@ function useParameterToFilterArray(filterFunction){
  * @returns {number} the resultant number
  */
 
+function makeNumber(first, second) {
+    return parseInt(first + second)
+}
+
 /**
  * Write a function called addAll that takes an unknown number of parameters
  * and adds all of them together. Return the sum.
@@ -61,11 +69,31 @@ function useParameterToFilterArray(filterFunction){
  * @returns {number} the sum of all the parameters (or arguments)
  */
 
+function addAll() {
+    let sum = 0;
+    if (arguments.length === 0) {
+        return sum;
+    }
+    else
+        for (arg of arguments) {
+            sum += arg;
+        }
+    return sum;
+}
+
+
 /*
  * Write and document a function called makeHappy that takes
  * an array and prepends 'Happy ' to the beginning of all the
  * words and returns them as a new array. Use the `map` function.
  */
+
+function makeHappy(array){
+    return array.map((x) => {
+        //if (typeof(x) === "string")
+        return "Happy " + x
+    })
+}
 
 /*
  * Write and document a function called getFullAddressesOfProperties
@@ -85,12 +113,28 @@ function useParameterToFilterArray(filterFunction){
  * Use `map` and an anonymous function.
  */
 
+function getFullAddressesOfProperties(array) {
+    return array.map((x) => {
+        return `${x.streetNumber} ${x.streetName} ${x.streetType} ${x.city} ${x.state} ${x.zip}`
+    })
+}
+
 /*
  * Write and document a function called findLargest.
  *
  * Using `forEach`, find the largest element in an array.
  * It must work for strings and numbers.
  */
+
+function findLargest(array){
+    let largest = array[0];
+    array.forEach(element => {
+        if (element > largest){
+            largest = element;
+        }
+    });
+    return largest;
+}
 
 /*
  * CHALLENGE
