@@ -193,8 +193,8 @@ function initializePage() {
 
   // TODO 03: Allow the user to add a new Review
   // TODO 03a: Handle the click event of the Add Review button. 
-  //          Show the form (call showHideForm())
-  document.getElementById('btnToggleForm').addEventListener('click', showHideForm());
+  //          Show the form (call showHideForm
+  document.getElementById('btnToggleForm').addEventListener('click', showHideForm);
 
   // TODO 03c: Handle the click event of the Save Review button, and call saveReview().
   document.getElementById('btnSaveReview').addEventListener('click', (ev) => {
