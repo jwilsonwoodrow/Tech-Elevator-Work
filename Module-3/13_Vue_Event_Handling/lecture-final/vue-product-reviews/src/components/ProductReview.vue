@@ -148,7 +148,7 @@ export default {
       filter: 0,
 
       // TODO 04A: Create a new, empty review object for adding new reviews.
-      newReview: this.newEmptyReview(),
+      newReview: {},
 
       // TODO 05A: Create a variable to store whether the Add Review form should be visible
       showForm: false,
@@ -243,7 +243,9 @@ export default {
     addNewReview() {
       // Add the extra fields to the review object
       this.newReview.id = this.reviews.length + 1;
-      this.newReview.favorite = false;
+
+      // Setting this BREAKS the reactivity!
+      // this.newReview.favorite = false;
 
       // Add the new review to the array of reviews (this would be an api call to update our db)
       this.reviews.unshift(this.newReview);
@@ -253,18 +255,8 @@ export default {
     },
     resetForm() {
       // Clear the new review
-      this.newReview = this.newEmptyReview();
+      this.newReview = {};
       this.showForm = false;
-    },
-    newEmptyReview() {
-      return {
-        id: 0,
-        favorite: false,
-        reviewer: "",
-        title: "",
-        rating: 0,
-        review: "",
-      };
     },
   },
 
