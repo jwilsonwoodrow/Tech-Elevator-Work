@@ -1,7 +1,7 @@
 <template>
   <div class="main">
-    <h2>Product Reviews for {{ name }}</h2>
-    <p class="description">{{ description }}</p>
+    <h2>Product Reviews for {{ $store.state.name }}</h2>
+    <p class="description">{{ $store.state.description }}</p>
 
     <!-- The "well displays" for holding the number of reviews has been added below.
             Add the appropriate data bindings to the Displays. -->
@@ -10,26 +10,9 @@
     <div class="well-display">
 
       <!-- TODO: insert AverageSummary component here. -->
-      <average-summary v-bind:theReviewArray="reviews" />
+      <average-summary />
+      <star-summary v-for="i in 5" v-bind:key="i" v-bind:n-stars="i" />
 
-      <!-- <div
-        class="well"
-        v-on:click="filter = 0"
-        v-bind:class="{ 'selected-well': filter === 0 }"
-      >
-        <span class="amount"> {{ averageRating }} </span>
-        Average Rating
-      </div> -->
-
-      <div
-        v-for="i in 5"
-        v-bind:key="i"
-        v-on:click="filter = i"
-        v-bind:class="{ well: true, 'selected-well': filter === i }"
-      >
-        <span class="amount">{{ nStarReviews[i - 1] }}</span>
-        {{ i }} Star Review
-      </div>
     </div>
 
     <!-- Add a link to show or hide the form -->
@@ -162,20 +145,16 @@
 ******************************************************************************************
 *****************************************************************************************/
 import AverageSummary from './AverageSummary.vue'
+import StarSummary from './StarSummary.vue';
 export default {
   name: "product-review",
   // data() is a function that returns an object full of properties
   components: {
     AverageSummary,
+    StarSummary,
   },
   data() {
     return {
-      name: "Cigar Parties for Dummies",
-      description:
-        "Host and plan the perfect cigar party for all your squirelly friends",
-
-      // Create a variable to hold the current ratings Filter value
-      filter: 0,
 
       // Create a new, empty review object for adding new reviews.
       newReview: {},
@@ -184,76 +163,18 @@ export default {
       showForm: false,
 
       // Reviews data
-      reviews: [
-        {
-          id: 1,
-          reviewer: "Malcolm Gladwell",
-          title: "What a book!",
-          review:
-            "It certainly is a book. I mean, I can see that. Pages kept together with glue and there's writing on it, in some language.",
-          rating: 3,
-          favorite: false,
-        },
-        {
-          id: 2,
-          reviewer: "Craig Castelaz",
-          title: "Better than a swift kick in the butt!",
-          review: "My bar is low.",
-          rating: 4,
-          favorite: false,
-        },
-        {
-          id: 3,
-          reviewer: "Ed",
-          title: "Better than Cats",
-          review: "I loved it.  It was great.  It was better than CAts.",
-          rating: 2,
-          favorite: false,
-        },
-        {
-          id: 4,
-          reviewer: "Lace",
-          title: "It's no FizzBuzz",
-          review:
-            "Not the most constructive how-to. I think the author may be nuts.",
-          rating: 2,
-          favorite: false,
-        },
-        {
-          id: 5,
-          reviewer: "Joe",
-          title: "Pick up the pace",
-          review: "Like War and Peace, but much slower.",
-          rating: 5,
-          favorite: false,
-        },
-        {
-          id: 6,
-          reviewer: "Max",
-          title: "Dummy",
-          review: "The writer needs to read a 'writing for dummies' book.",
-          rating: 1,
-          favorite: false,
-        },
-      ],
+      reviews: [],
     };
   },
 
   // Create Computed properties for averageRating and number of star ratings
   computed: {
 
-    nStarReviews() {
-      let result = [0, 0, 0, 0, 0];
-      this.reviews.forEach((rev) => {
-        result[rev.rating - 1]++;
-      });
-      return result;
-    },
 
   // Add a computed property filteredReviews to return the reviews to be displayed
     filteredReviews() {
-      return this.reviews.filter((rev) => {
-        return this.filter === 0 || this.filter === rev.rating;
+      return this.$store.state.reviews.filter((rev) => {
+        return this.$store.state.filter === 0 || this.$store.state.filter === rev.rating;
       });
     },
   },
@@ -293,21 +214,6 @@ div.main div.well-display {
   justify-content: space-around;
 }
 
-div.main div.well-display div.well {
-  display: inline-block;
-  width: 15%;
-  border: 1px black solid;
-  border-radius: 6px;
-  text-align: center;
-  margin: 0.25rem;
-  cursor: pointer;
-}
-
-div.main div.well-display div.well span.amount {
-  color: darkslategray;
-  display: block;
-  font-size: 2.5rem;
-}
 
 div.main div.review {
   border: 1px black solid;
@@ -354,14 +260,6 @@ div.review.fav {
   background-color: lightyellow;
 }
 
-/* Add a style to Mark which rating is selected */
-.selected-well {
-  border-color: blue;
-  box-shadow: 0px 0px 5px 5px lightblue;
-}
-div.main div.well-display div.well:hover {
-  box-shadow: 0px 0px 5px 5px lightgray;
-}
 
 div.form-element {
   margin-top: 10px;
