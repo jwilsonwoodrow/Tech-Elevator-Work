@@ -1,60 +1,25 @@
-<!--
-Features to add:
-  TODO 01: Show the average rating and the frequency of each rating in the "well-display" above the reviews.
-    Average rating:
-      Make a computed property for the average rating
-      One-way data bind the well for average rating to the computed property
-    N-Star review counts:
-      Make a computed property for nStarReviews that return an array of counts
-      Bind or "count wells" to the proper index of the computed property
-
-  TODO 02: Allow the user to click on a Well to display only those reviews with a particular rating
-        Make a filter property that says what-star rating reviews we want to see.  filter=0 means see all reviews.<template>
-        Make a computed filteredReviews property which applies the filter
-        Listen for the click event on the wells, and change the filter according
-        Change the display loop for reviews to use filteredReviews
-      
-
-  TODO 03: Give a visual indication of which filter is being applied
-      Create a CSS class selector which applies some formatting to the selected filter
-      Apply the "selected" css class to the well which matches the filter value
-
-  TODO 04: Provide a form to allow the user to add a new review
-      Create a newReview variable to store the values for the new review fields as the user enters
-      Create the Add Review form
-      Handle the submit / click event on the form to add the new review to the collection
-      
-
-  TODO 05: Show and hide the AddReview form as appropriate
-      Hide the form by default
-        Conditionally show the form based on the value of a data variable (showForm)
-      Create a button/link to show the form (Add Review)
-        Change the value of the variable showForm
-      
-      Close the form and reset its values after the new review is added
-      Close the form and reset its values if the user presses Cancel
--->
 <template>
   <div class="main">
     <h2>Product Reviews for {{ name }}</h2>
     <p class="description">{{ description }}</p>
 
-    <!-- TODO 01B: The "well displays" for holding the number of reviews has been added below.
+    <!-- The "well displays" for holding the number of reviews has been added below.
             Add the appropriate data bindings to the Displays. -->
-
-    <!-- TODO 02D: Set the filter when the user clicks on the display -->
-
-    <!-- TODO 03B: Mark which rating is selected -->
-
+    <!-- Set the filter when the user clicks on the display -->
+    <!-- Mark which rating is selected -->
     <div class="well-display">
-      <div
+
+      <!-- TODO: insert AverageSummary component here. -->
+      <average-summary v-bind:theReviewArray="reviews" />
+
+      <!-- <div
         class="well"
         v-on:click="filter = 0"
         v-bind:class="{ 'selected-well': filter === 0 }"
       >
         <span class="amount"> {{ averageRating }} </span>
         Average Rating
-      </div>
+      </div> -->
 
       <div
         v-for="i in 5"
@@ -67,17 +32,18 @@ Features to add:
       </div>
     </div>
 
-    <!-- TODO 05C: Add a link to show or hide the form -->
+    <!-- Add a link to show or hide the form -->
     <a href="#" v-on:click.prevent="showForm = true" v-show="!showForm"
       >Add Review</a
     >
-    <!-- TODO 04B: Create the form that allows the user to add a new review -->
+    <!-- Create the form that allows the user to add a new review -->
+    <!-- Only show the form of the showForm variable is set -->
     <form v-on:submit.prevent="addNewReview" v-show="showForm">
       <!-- Form has: reviewer, title, rating, review. Object also has id, favorite  -->
 
       <div class="form-element">
         <label for="reviewer">Reviewer: </label>
-        <input name="reviewer" id="reviewer" type="text" v-model="newReview.reviewer" />
+        <input id="reviewer" type="text" v-model="newReview.reviewer" />
       </div>
       <div class="form-element">
         <label for="title">Title: </label>
@@ -99,13 +65,10 @@ Features to add:
       </div>
 
       <button type="submit">Save</button>
-      <button type="button" v-on:click="resetForm">Cancel</button>
+      <button v-on:click.prevent="resetForm">Cancel</button>
     </form>
 
-    <!-- TODO 05B: Only show the form of the showForm variable is set -->
-
-    <!-- TODO 02C: Display the filteredReviews array instead of the raw data -->
-
+    <!-- Display the filteredReviews array instead of the raw data -->
     <!-- Display each review in a loop -->
     <div
       class="review"
@@ -135,22 +98,89 @@ Features to add:
 </template>
 
 <script>
+/*****************************************************************************************
+******************************************************************************************
+  TODO 01: Add vuex to this project
+    >> vue add vuex
+    >> Add 'strict: true' to the exported store (store/index.js)
+
+  TODO 02: Move the shared data to Vuex state:
+      title
+      description
+      reviews (temporarily leave an empty array here to everything does not blow up)
+      ratingFilter
+
+  TODO 03: Update the binding to title and description
+          Update filteredReviews computed property to use the data in $store.state
+          Update the averageRating computed property to use the data in $store.state
+
+  TODO 04: Create AverageSummary component
+      Move the HTML from the Average Rating well
+      Move the averageRating computed property
+      Copy (for now) the div.well styles (and the .selectedRating style)
+      import the component into ProductReview and display it
+
+  TODO 05: Add a mutation for ratingFilter so that we can update it from the well displays
+      Then add a method (updateFilter) to commit that mutation when the user clicks on the AverageRating display
+
+  TODO 06: Create StarSummary component
+      Move the HTML from the Star Rating well
+      Copy (for now) the div.well styles (and the .selectedRating style)
+      Add a data field for the "ratingValue" (hardcode it to 1 for now)
+      Copy one of the numberofstarratings computed properties and update it to compare to ratingValue
+      update the text in the div to not hardcode the rating value
+      import the component into ProductReview and display it
+      Then add a method (updateFilter) to commit that mutation when the user clicks on the StarRating display
+
+  TODO 07: Change the ratingValue from data to a prop, so it can be passed in by the parent
+        Generate 5 of these in a loop in the parent, and bind to the rating-value prop
+
+  TODO 08: Create the AddReview component
+      Move the Anchor and the Form into the template
+      Move the newReview and showForm data into the component
+      Move the addNewReview and resetForm methods
+      Move styling for form fields
+      Add the component to ProductReviews
+      Add a mutation to the store for ADD_REVIEW
+      commit the mutation in AddReview component, addNewReview method
+
+  TODO 09: Create a ReviewList component
+      Move the HTML for the list to the component
+      Move the styling
+      Move the filteredReviews computed property
+      Bind to $store.state
+      Add the component to ProductReviews
+
+  TODO 10: Create the ReviewDisplay component (out of the ReviewList component)
+      Move the HTML for each review
+      Move all the styling
+      Add a props for review : Object
+      Add the component to ReviewList
+      Add a mutation for Toggling favorite
+      Call the mutation when the checkbox is clicked
+      Bind checked attribute to review.favorite 
+******************************************************************************************
+*****************************************************************************************/
+import AverageSummary from './AverageSummary.vue'
 export default {
   name: "product-review",
   // data() is a function that returns an object full of properties
+  components: {
+    AverageSummary,
+  },
   data() {
     return {
       name: "Cigar Parties for Dummies",
       description:
         "Host and plan the perfect cigar party for all your squirelly friends",
 
-      // TODO 02A: Create a variable to hold the current ratings Filter value
+      // Create a variable to hold the current ratings Filter value
       filter: 0,
 
-      // TODO 04A: Create a new, empty review object for adding new reviews.
+      // Create a new, empty review object for adding new reviews.
       newReview: {},
 
-      // TODO 05A: Create a variable to store whether the Add Review form should be visible
+      // Create a variable to store whether the Add Review form should be visible
       showForm: false,
 
       // Reviews data
@@ -209,19 +239,8 @@ export default {
     };
   },
 
-  // TODO 01A: Create Computed properties for averageRating and number of star ratings
+  // Create Computed properties for averageRating and number of star ratings
   computed: {
-    averageRating() {
-      // Calculate the average rating of all the reviews (add ratings of all reviews then divide by the count)
-      if (this.reviews.length === 0) {
-        return 0;
-      }
-
-      let sum = this.reviews.reduce((accum, review) => {
-        return accum + review.rating;
-      }, 0);
-      return (sum / this.reviews.length).toFixed(2);
-    },
 
     nStarReviews() {
       let result = [0, 0, 0, 0, 0];
@@ -231,7 +250,7 @@ export default {
       return result;
     },
 
-  // TODO 02B: Add a computed property filteredReviews to return the reviews to be displayed
+  // Add a computed property filteredReviews to return the reviews to be displayed
     filteredReviews() {
       return this.reviews.filter((rev) => {
         return this.filter === 0 || this.filter === rev.rating;
@@ -239,13 +258,13 @@ export default {
     },
   },
   methods: {
-  // TODO 04C: Create methods to add the new review or cancel the add
+  // Create methods to add the new review or cancel the add
     addNewReview() {
       // Add the extra fields to the review object
       this.newReview.id = this.reviews.length + 1;
 
       // Setting this BREAKS the reactivity!
-      //this.newReview.favorite = false;
+      // this.newReview.favorite = false;
 
       // Add the new review to the array of reviews (this would be an api call to update our db)
       this.reviews.unshift(this.newReview);
@@ -335,7 +354,7 @@ div.review.fav {
   background-color: lightyellow;
 }
 
-/* TODO 05A: Add a style to Mark which rating is selected */
+/* Add a style to Mark which rating is selected */
 .selected-well {
   border-color: blue;
   box-shadow: 0px 0px 5px 5px lightblue;
