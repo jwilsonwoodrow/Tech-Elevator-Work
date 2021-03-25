@@ -19,41 +19,39 @@ Features to add:
     <!-- TODO 03B: Mark which rating is selected -->
 
     <div class="well-display">
-      <div class="well">
-        <span class="amount"> <!-- data binding goes here -->0</span>
+      <div class="well" v-on:click="filter = 0" v-bind:class="{ "selected-well" : filter === 0 }">
+        <span class="amount">{{ this.averageRating }}</span>
         Average Rating
       </div>
 
-      <div class="well">
-        <span class="amount"> <!-- data binding goes here -->0</span>
-        1 Star Review
-      </div>
-
-      <div class="well">
-        <span class="amount"> <!-- data binding goes here -->0</span>
-        2 Star Review
-      </div>
-
-      <div class="well">
-        <span class="amount"> <!-- data binding goes here -->0</span>
-        3 Star Review
-      </div>
-
-      <div class="well">
-        <span class="amount"> <!-- data binding goes here -->0</span>
-        4 Star Review
-      </div>
-
-      <div class="well">
-        <span class="amount"> <!-- data binding goes here -->0</span>
-        5 Star Review
+      <div class="well" v-for="i in 5" v-bind:key="i" v-on:click="filter = i" v-bind:class="{well: true, "selected-well" : filter === i}">
+        <span class="amount">{{ nStarReviews[i - 1] }}</span>
+        {{ i }} Star Review
       </div>
     </div>
 
     <!-- TODO 05C: Add a link to show or hide the form -->
 
     <!-- TODO 04B: Create the form that allows the user to add a new review -->
-
+    <form>
+      <div>
+      <label for="reviewer">Reviewer: </label>
+      <input type="text" id="reviewer" v-model="newReview.reviewer">
+      </div>
+      <div>
+        <label for="title">Title: </label>
+        <input type="text" id = "title" v-model="newReview.title">
+      </div>
+      <div>
+        <label for="rating">Rating: </label>
+        <input type="number" id="rating" v-model="newReview.rating">
+      </div>
+      <div>
+        <label for="review">Review: </label>
+        <textarea id="review" v-model="newReview.review">
+      </div>
+      <input type="submit" id="submit" value="Submit">
+    </form>
     <!-- TODO 05B: Only show the form of the showForm variable is set -->
 
     <!-- TODO 02C: Display the filteredReviews array instead of the raw data -->
@@ -61,7 +59,7 @@ Features to add:
     <!-- Display each review in a loop -->
     <div
       class="review"
-      v-for="review in reviews"
+      v-for="review in filteredReviews"
       v-bind:key="review.id"
       v-bind:class="{ fav: review.favorite, someOtherClass: review.rating > 3 }"
     >
@@ -97,7 +95,7 @@ export default {
         "Host and plan the perfect cigar party for all your squirelly friends",
 
       // TODO 02A: Create a variable to hold the current ratings Filter value
-
+      filter: 0,
       // TODO 04A: Create a new, empty review object for adding new reviews.
 
       // TODO 05A: Create a variable to store whether the Add Review form should be visible
@@ -159,10 +157,33 @@ export default {
   },
 
   // TODO 01A: Create Computed properties for averageRating and number of star ratings
+  computed: {
+    averageRating() {
+      if (this.reviews.length === 0) {
+        return 0;
+      }
 
-  // TODO 02B: Add a computed property filteredReviews to return the reviews to be displayed
+      let sum = this.reviews.reduce((accum, review) => {
+        return accum + review.rating;
+      }, 0);
+      return (sum / this.reviews.length).toFixed(2);
+    },
+    nStarReviews() {
+      let nStarReviews = [0, 0, 0, 0, 0];
+      this.reviews.forEach((review) => {
+        nStarReviews[review.rating - 1]++;
+      });
+      return nStarReviews;
+    },
+    filteredReviews() {
+      if ((filter = 0)) {
+        return reviews;
+      } else return reviews;
+    },
+    // TODO 02B: Add a computed property filteredReviews to return the reviews to be displayed
 
-  // TODO 04C: Create methods to add the new review or cancel the add
+    // TODO 04C: Create methods to add the new review or cancel the add
+  },
 };
 </script>
 
@@ -236,8 +257,6 @@ div.review.fav {
   background-color: lightyellow;
 }
 
-/* TODO 05A: Add a style to Mark which rating is selected */
-/************* Use these or any rule you want
 .selected-well {
   border-color: blue;
   box-shadow: 0px 0px 5px 5px lightblue;
@@ -245,6 +264,4 @@ div.review.fav {
 div.main div.well-display div.well:hover {
   box-shadow: 0px 0px 5px 5px lightgray;
 }
-
-*******/
 </style>

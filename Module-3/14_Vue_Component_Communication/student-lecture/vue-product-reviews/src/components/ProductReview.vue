@@ -8,14 +8,14 @@
     <!-- Set the filter when the user clicks on the display -->
     <!-- Mark which rating is selected -->
     <div class="well-display">
-      <div
+      <!-- <div
         class="well"
         v-on:click="filter = 0"
         v-bind:class="{ 'selected-well': filter === 0 }"
       >
         <span class="amount"> {{ averageRating }} </span>
         Average Rating
-      </div>
+      </div> -->
 
       <div
         v-for="i in 5"
@@ -157,9 +157,13 @@
       Bind checked attribute to review.favorite 
 ******************************************************************************************
 *****************************************************************************************/
+import AverageSummary from "./AverageSummary.vue"
 export default {
   name: "product-review",
   // data() is a function that returns an object full of properties
+  components: {
+    AverageSummary
+  }
   data() {
     return {
       name: "Cigar Parties for Dummies",
@@ -291,7 +295,7 @@ div.main {
   margin: 1rem 0;
 }
 
-div.main div.well-display {
+/* div.main div.well-display {
   display: flex;
   justify-content: space-around;
 }
@@ -310,7 +314,7 @@ div.main div.well-display div.well span.amount {
   color: darkslategray;
   display: block;
   font-size: 2.5rem;
-}
+} */
 
 div.main div.review {
   border: 1px black solid;
