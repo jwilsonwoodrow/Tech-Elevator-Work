@@ -77,7 +77,7 @@ Features to add:
 
       <div class="form-element">
         <label for="reviewer">Reviewer: </label>
-        <input id="reviewer" type="text" v-model="newReview.reviewer" />
+        <input name="reviewer" id="reviewer" type="text" v-model="newReview.reviewer" />
       </div>
       <div class="form-element">
         <label for="title">Title: </label>
@@ -99,7 +99,7 @@ Features to add:
       </div>
 
       <button type="submit">Save</button>
-      <button v-on:click.prevent="resetForm">Cancel</button>
+      <button type="button" v-on:click="resetForm">Cancel</button>
     </form>
 
     <!-- TODO 05B: Only show the form of the showForm variable is set -->
@@ -245,7 +245,7 @@ export default {
       this.newReview.id = this.reviews.length + 1;
 
       // Setting this BREAKS the reactivity!
-      // this.newReview.favorite = false;
+      //this.newReview.favorite = false;
 
       // Add the new review to the array of reviews (this would be an api call to update our db)
       this.reviews.unshift(this.newReview);
