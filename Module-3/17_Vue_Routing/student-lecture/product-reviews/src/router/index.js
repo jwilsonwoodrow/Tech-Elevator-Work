@@ -1,5 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Products from "../views/Products.vue"
+import ProductDetail from "../views/ProductDetail.vue"
+import AddReview from "../views/AddReviewPage.vue"
+import About from "../views/About.vue"
 
 Vue.use(VueRouter)
 /*
@@ -8,6 +12,26 @@ Vue.use(VueRouter)
     * Add a route to the routes table
 */
 const routes = [
+  {
+    path: "/",
+    name: "products", //not required, acts like an id
+    component: Products,
+  },
+  {
+    path: "/products/:id",
+    name: "product-detail",
+    component: ProductDetail,
+  },
+  {
+    path: "/products/:id/add-review",
+    name: "add-review",
+    component: AddReview,
+  },
+  {
+    path: "/about",
+    name: "about",
+    component: About
+  }
 
 
 ]

@@ -8,6 +8,7 @@
     </header>
     <main class="main">
       <!-- 01: Add the router-view to display the current view -->
+      <router-view />
     </main>
     <footer>&copy; Copyright 2021, Dummies for Book Reviews</footer>
   </div>
