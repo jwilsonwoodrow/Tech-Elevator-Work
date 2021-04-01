@@ -1,6 +1,5 @@
 <template>
   <div class="book-container">
-    <router-link v-bind:to="{name: 'bookDetails', params:{isbn:book.isbn}}">
     <book-card
       v-bind:book="book"
       v-for="book in $store.state.books"
