@@ -8,6 +8,15 @@ export default {
 
   get(id) {
     return http.get(`/messages/${id}`);
+  },
+  post(message){
+    return http.post(`/messages`, message)
+  },
+  put(id, message){
+    return http.put(`/messages/${id}`, message)
+  },
+  delete(id){
+    return http.delete(`/messages/${id}`)
   }
-
+  
 }

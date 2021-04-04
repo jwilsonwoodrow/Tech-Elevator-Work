@@ -33,7 +33,7 @@
 
 <script>
 import CityList from "@/components/CityList.vue";
-import axios from 'axios';
+import api from "../services/apiService"
 export default {
   name: "cities",
   components: {
@@ -53,7 +53,7 @@ export default {
 
       // This is the url...
       let url = `${process.env.VUE_APP_REMOTE_API}/cities`;
-      axios.get(url)
+      api.getCities()
         .then(
           (resp) =>{
             this.cities = resp.data;
